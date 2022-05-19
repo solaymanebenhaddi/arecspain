@@ -32,7 +32,7 @@ const Header = ({ type }) => {
   //   },
   // ]);
   const [OpenOptions, setOpenOptions] = useState(false);
-  const [Options, setOptions] = useState({ adulte: 1, children: 0, room: 1 });
+  // const [Options, setOptions] = useState({ adulte: 1, children: 0, room: 1 });
 
   // const handleOption = (name, operation) => {
   //   setOptions((prev) => {
@@ -47,7 +47,7 @@ const Header = ({ type }) => {
 
   const handleSearch = () => {
     setShow("hide");
-    navigate("/hotels", { state: { destination, minPrice,maxPrice, Options, Show } });
+    navigate("/hotels", { state: { destination, minPrice,maxPrice, Show } });
   };
   const handlePrice=(min,max)=>{
     setMinPrice(min);
