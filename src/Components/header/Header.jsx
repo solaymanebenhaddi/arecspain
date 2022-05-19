@@ -34,14 +34,14 @@ const Header = ({ type }) => {
   const [OpenOptions, setOpenOptions] = useState(false);
   const [Options, setOptions] = useState({ adulte: 1, children: 0, room: 1 });
 
-  const handleOption = (name, operation) => {
-    setOptions((prev) => {
-      return {
-        ...prev,
-        [name]: operation === "i" ? Options[name] + 1 : Options[name] - 1,
-      };
-    });
-  };
+  // const handleOption = (name, operation) => {
+  //   setOptions((prev) => {
+  //     return {
+  //       ...prev,
+  //       [name]: operation === "i" ? Options[name] + 1 : Options[name] - 1,
+  //     };
+  //   });
+  // };
   //we use useNavigate() from react-router-dom to transfer data to other destination pages.
   const navigate = useNavigate();
 
