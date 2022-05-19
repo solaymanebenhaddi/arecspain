@@ -1,0 +1,37 @@
+.navbar{
+    height: 65px;
+    background-color: #003580;
+    display: flex;
+    justify-content: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.navContainer{
+    margin: auto;
+    width: 100%;
+    max-width: 1024px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .navbar-brand{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    color: #F3C40E !important;
+    font-size: 26px;
+}
+.navButton{
+    margin-left: 20px;
+    border:none ;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 200;
+    width: 100%;
+}
+.navbar .navbar-toggler-icon{color: #ffffff !important;}
+@media all and (min-width:767px ) {
+    .navbar .nav-link {
+     color: #ffffff !important;
+    }
+}
