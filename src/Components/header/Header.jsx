@@ -1,11 +1,5 @@
 import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import {
-  faBed,
-  faCar,
-  faL,
-  faPerson,
-  faPlane,
-  faTaxi,
   faHouseChimney,
   faBuilding,
   faMapLocation,
@@ -14,12 +8,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import "./header.css";
-import { Calendar } from "react-date-range";
-import { format } from "date-fns";
+// import { Calendar } from "react-date-range";
+// import { format } from "date-fns";
 import "react-date-range/dist/styles.css"; // main date range style file
 import "react-date-range/dist/theme/default.css"; // theme date range css file
-import { DateRangePicker } from "react-date-range";
-import { DateRange } from "react-date-range";
+// import { DateRangePicker } from "react-date-range";
+// import { DateRange } from "react-date-range";
 import { useNavigate } from "react-router-dom";
 import MultiRange from '../MultiRange/MultiRange'
 import { Button, Col, Container, Dropdown, Row } from "react-bootstrap";
@@ -28,15 +22,15 @@ const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1);
-  const [openDate, setOpenDate] = useState(false);
+  // const [openDate, setOpenDate] = useState(false);
   const [Show, setShow] = useState("show");
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(Date.now()),
-      endDate: new Date(Date.now()),
-      key: "selection",
-    },
-  ]);
+  // const [date, setDate] = useState([
+  //   {
+  //     startDate: new Date(Date.now()),
+  //     endDate: new Date(Date.now()),
+  //     key: "selection",
+  //   },
+  // ]);
   const [OpenOptions, setOpenOptions] = useState(false);
   const [Options, setOptions] = useState({ adulte: 1, children: 0, room: 1 });
 
