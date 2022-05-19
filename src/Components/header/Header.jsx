@@ -47,7 +47,7 @@ const Header = ({ type }) => {
 
   const handleSearch = () => {
     setShow("hide");
-    navigate("/hotels", { state: { destination, date, Options, Show } });
+    navigate("/hotels", { state: { destination, minPrice,maxPrice, Options, Show } });
   };
   const handlePrice=(min,max)=>{
     setMinPrice(min);
