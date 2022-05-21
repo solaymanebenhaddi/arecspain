@@ -72,6 +72,7 @@ max-width: 1124px;
 gap: 10px;
 }
 .headerSearch .col{padding: 5px;}
+.headerSearch .form-select{width: 200px !important;}
 
 .headerSearch .headerBtn{width: 100%;}
 .headerIcon{
@@ -95,12 +96,14 @@ border: none;
     z-index: 2;
 }
 .options{
-position: absolute; z-index: 2;
+position: absolute; background-color: #00296b;
+z-index: 2;
 width: 200px;
 top: 60px;
 background-color: rgb(255, 255, 255);
-/* display: flex;
-align-items: center; */
+display: flex;
+flex-direction: column;
+align-items: center;
 color: gray;
 border-radius: 5px;
 -webkit-box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.4);

@@ -3,7 +3,8 @@ import {
   faHouseChimney,
   faBuilding,
   faMapLocation,
-  faCity,faSackDollar
+  faCity,
+  faSackDollar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
@@ -15,15 +16,16 @@ import "react-date-range/dist/theme/default.css"; // theme date range css file
 // import { DateRangePicker } from "react-date-range";
 // import { DateRange } from "react-date-range";
 import { useNavigate } from "react-router-dom";
-import MultiRange from '../MultiRange/MultiRange'
-import { Button, Col, Container, Dropdown, Row } from "react-bootstrap";
-
+import MultiRange from "../MultiRange/MultiRange";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import "../MultiRange/multirange.css";
 const Header = ({ type }) => {
-  const [destination, setDestination] = useState("");
+  const [City, setCity] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1);
+  const [ErrorPrice, setErrorPrice] = useState(false);
   // const [openDate, setOpenDate] = useState(false);
-  const [Show, setShow] = useState("show");
+  const [TypeProp, setTypeProp] = useState("");
   // const [date, setDate] = useState([
   //   {
   //     startDate: new Date(Date.now()),
@@ -46,14 +48,17 @@ const Header = ({ type }) => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    setShow("hide");
-    navigate("/hotels", { state: { destination, minPrice,maxPrice, Show } });
+    console.log(" errorr"+ErrorPrice)
+    if(minPrice>=maxPrice){
+      setErrorPrice(true);
+    }
+    else{navigate("/Lists", { state: { City, minPrice, maxPrice, TypeProp } });}
+    
   };
-  const handlePrice=(min,max)=>{
+  const handlePrice = (min, max) => {
     setMinPrice(min);
     setMaxPrice(max);
-    console.log('min :'+min+" max :"+max);
-  }
+  };
 
   return (
     <div className="header">
@@ -103,11 +108,12 @@ const Header = ({ type }) => {
                   <img
                     src="/assets/images/headerbg.png"
                     className="align-self-md-left"
-                   alt=""></img>
+                    alt=""
+                  ></img>
                 </Col>
               </Row>
 
-              <Row className="headerSearch">
+              <Row className="headerSearch gap-4">
                 <Col className="col-md-3 item">
                   {/* city to look in */}
                   <div className="headerSearchItem">
@@ -118,141 +124,112 @@ const Header = ({ type }) => {
                       className="headerSearchInput"
                       name="search"
                       id="searchD"
-                      onChange={(e) => setDestination(e.target.value)}
+                      onChange={(e) => setCity(e.target.value)}
                     />
                   </div>
                 </Col>
                 {/* Type of property  */}
-                <Col className="col-md-3 item" style={{width:'200px'}}>
+                <Col className="col-md-3 item" style={{ width: "200px" }}>
                   <div className="headerSearchItem">
                     <FontAwesomeIcon
                       icon={faCalendarDays}
                       className="headerIcon"
                     />
-                    {/* <span
-                      className="headerSearchText"
-                      onClick={() => setOpenDate(!openDate)}
-                    >
-                     {`${format(date[0].startDate,"MM/dd/yyyy")} to ${format(date[0].endDate,"MM/dd/yyyy")}`}
-                    </span> */}
-                    <Dropdown className="w-75">
-                      <Dropdown.Toggle
-                        id="dropdownproptype"
-                        variant="Light"
-                      >
-                        Select Property Type
-                      </Dropdown.Toggle>
 
-                      <Dropdown.Menu variant="dark">
-                        <Dropdown.Item href="#/" active>
+                    <div>
+                      <select
+                        className="form-select form-select-lg"
+                        value={City}
+                        onChange={(e) => setCity(e.target.value)}
+                      >
+                        <option defaultValue="--Select Property Type--">--Select Property Type--</option>
+                        <option value="Villas" className="p-3">
                           Villas
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/">
+                        </option>
+                        <option value="Appartement" className="p-3">
                           Appartement
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/">
-                          Luxury Containers House
-                        </Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item href="#/">
+                        </option>
+                        <option value="Luxury" className="p-3">
+                          Luxury Home Container
+                        </option>
+                        <option value="Lands" className="p-3">
                           Lands
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* {openDate && 
-                                <DateRange editableDateInputs={true}
-                                onChange={item=>setDate([item.selection])}
-                                moveRangeOnFirstSelection={false}
-                                ranges={date} className="date"
-                                minDate={new Date()}/>} */}
-                    {/* install date-fns : npm install date-fns */}
+                        </option>
+                      </select>
+                    </div>
                   </div>
                 </Col>
-                <Col className="col-md-3 item" >
+                <Col className="col-md-3 item">
                   <div className="headerSearchItem">
-                     <span style={{width:'200px'}}
+                    <FontAwesomeIcon
+                      icon={faSackDollar}
+                      className="headerIcon"
+                    />
+                    <span
+                      style={{ width: "200px" }}
                       onClick={() => setOpenOptions(!OpenOptions)}
                       className="headerSearchText"
-                    ><FontAwesomeIcon icon={faSackDollar} className="headerIcon" />
-                     {`${minPrice} Min Price . ${maxPrice} Max Price`}</span>
+                    >
+                      {`${minPrice} Min Price . ${maxPrice} Max Price`}
+                    </span>
                     {OpenOptions && (
                       <div className="options">
-                        
-                      <MultiRange     min={10000} max={100000} onChange={({ min, max }) => handlePrice(min,max)}/>
-                    
-                        {/*
-                        <div className="optionItem">
-                          <span className="optionText">
-                            {Options.adulte} Adult
-                          </span>
-                          <div className="optionCounter">
-                            <Button
-                              disabled={Options.adulte <= 1}
-                              className="optionCounterButton"
-                              onClick={() => handleOption("adulte", "d")}
+                        <div className="input-group input-group-sm my-3">
+                          <div className="input-group-prepend">
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
                             >
-                              -
-                            </Button>
-                            <span className="optionCounterNumber">
-                              {Options.adulte}
+                              Min Price :
                             </span>
-                            <Button
-                              className="optionCounterButton"
-                              onClick={() => handleOption("adulte", "i")}
-                            >
-                              +
-                            </Button>
                           </div>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onKeyPress={(event) => {
+                              if (!/[0-9]/.test(event.key)) {
+                                event.preventDefault();
+                              }
+                            }}
+                            aria-label="min"
+                            onChange={(event) =>
+                              {
+                                setMinPrice(event.target.value);setErrorPrice(false)}
+                            }
+                            aria-describedby="inputGroup-sizing-sm"
+                          />
                         </div>
-                        <div className="optionItem">
-                          <span className="optionText">
-                            {Options.children} Children
-                          </span>
-                          <div className="optionCounter">
-                            <Button
-                              disabled={Options.children <= 0}
-                              className="optionCounterButton"
-                              onClick={() => handleOption("children", "d")}
+                        <div className="input-group input-group-sm my-3">
+                          <div className="input-group-prepend">
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
                             >
-                              -
-                            </Button>
-                            <span className="optionCounterNumber">
-                              {Options.children}
+                              Max Price :
                             </span>
-                            <Button
-                              className="optionCounterButton"
-                              onClick={() => handleOption("children", "i")}
-                            >
-                              +
-                            </Button>
                           </div>
+                          <input
+                            type="text"
+                            onKeyPress={(event) => {
+                              if (!/[0-9]/.test(event.key)) {
+                                event.preventDefault();
+                              }
+                            }}
+                            className="form-control"
+                            aria-label="max"
+                            onChange={(event) =>{
+                              setMaxPrice(event.target.value);setErrorPrice(false)}
+                            }
+                            aria-describedby="inputGroup-sizing-sm"
+                          />
                         </div>
-                        <div className="optionItem">
-                          <span className="optionText">
-                            {Options.room} Roommm
-                          </span>
-                          <div className="optionCounter">
-                            <Button
-                              disabled={Options.room <= 1}
-                              className="optionCounterButton"
-                              onClick={() => handleOption("room", "d")}
-                            >
-                              -
-                            </Button>
-                            <span className="optionCounterNumber">
-                              {Options.room}
-                            </span>
-                            <Button
-                              className="optionCounterButton"
-                              onClick={() => handleOption("room", "i")}
-                            >
-                              +
-                            </Button>
-                          </div>
-                        </div>*/}
-                      </div>
-                    )} 
+                        {ErrorPrice && <div className="alert alert-danger" role="alert">
+                                          You should Enter a Correct Range Min and Max Price!
+                                        </div>}
 
+                        {/* <MultiRange min={10000} max={100000} onChange={({ min, max }) => handlePrice(min,max)}/> */}
+                      </div>
+                    )}
                   </div>
                 </Col>
                 <Col className="col-md-2 item">

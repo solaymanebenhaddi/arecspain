@@ -2,15 +2,16 @@ import React from "react";
 // import { Container, Row, Col, Image } from "react-bootstrap";
 // import Animation from "./Animation";
 // import Typed from "react-typed";
-import Features from '../Components/Features/Features'
-import Footer from '../Components/footer/Footer'
-import Header from '../Components/header/Header'
-import Maillist from '../Components/mail/Mail'
-import Navigationbar from '../Components/navbar/Navbar'
-import PreferedPro from '../Components/preferedprop/PreferedProp'
-import PropertyList from '../Components/PropertyList/PropertyList'
-import "./home.css";
+import Features from '../../Components/Features/Features'
+import Footer from '../../Components/footer/Footer'
+import Header from '../../Components/header/Header'
+import Maillist from '../../Components/mail/Mail'
+import Navigationbar from '../../Components/navbar/Navbar'
+import PreferedPro from '../../Components/preferedprop/PreferedProp'
+import PropertyList from '../../Components/PropertyList/PropertyList'
+import './home.css';
 function Home() {
+  
   return (
        <>
     <Navigationbar/>
