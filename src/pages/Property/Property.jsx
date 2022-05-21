@@ -59,7 +59,7 @@ function Property() {
               <FontAwesomeIcon icon={faCircleXmark} className="close" onClick={()=>setOpenSlide(false)}/>
               <FontAwesomeIcon onClick={()=>handleMove("l")} className="arrow" icon={faCircleArrowLeft}/>
               <div className="sliderWrapper">
-                <img src={photos[SlideNumber].src} alt="" className="sliderImg" />
+                <img srcSet={photos[SlideNumber].src} alt="" className="sliderImg" />
               </div>
               <FontAwesomeIcon onClick={()=>handleMove("r")} className="arrow" icon={faCircleArrowRight}/>
             </div>}
@@ -79,7 +79,7 @@ function Property() {
             <div className="hotelImages">
               {photos.map((photo,id)=>(
                 <div className="hotelImgWrapper">
-                  <img key={id} onClick={()=>handleOpen(id)} src={photo.src} alt="" className="hotelImg" />
+                  <img key={id} onClick={()=>handleOpen(id)} srcSet={photo.src} alt="" className="hotelImg" />
                 </div>
               ))}
             </div>

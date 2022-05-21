@@ -3,7 +3,7 @@ import './searchitem.css'
 function SearchItem() {
   return (
     <div className='searchItem'>
-        <img src="https://cf.bstatic.com/xdata/images/hotel/max300/344881660.webp?k=24318a69ccb8d2e1848371fd01174637087e7626b16b972f6ee0c7e96ae4f7d3&o=" alt="" srcset="" className='siImg'/>
+        <img srcSet="https://cf.bstatic.com/xdata/images/hotel/max300/344881660.webp?k=24318a69ccb8d2e1848371fd01174637087e7626b16b972f6ee0c7e96ae4f7d3&o=" alt="" srcset="" className='siImg'/>
         <div className="siDesc">
             <h1 className="siTitle">Tower street Apartments</h1>
             <span className="siDistance">500m from center</span>

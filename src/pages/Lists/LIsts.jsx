@@ -9,33 +9,56 @@ import "./lists.css";
 function Lists() {
  //in this case we use useLocation() Hook to recive date from useNavigate() Hook.
    const location=useLocation();
-   const [destination,setDestination]=useState(location.state.destination)
-   const [date,setDate]=useState(location.state.date)
-   const [Options,setOptions]=useState(location.state.Options)
+   const [City,setCity]=useState(location.state.City)
+   const [Minprice,setMinPrice]=useState(location.state.minPrice)
+   const [Maxprice,setMaxPrice]=useState(location.state.maxPrice)
+   const [TypeProp,setTypeProp]=useState(location.state.TypeProp)
    const [OpenDate,setOpenDate]=useState(false)
    const [Show, setShow] = useState(location.state.Show);
   return (
     <div>
       <Navbar />
       <Header type="list"/>
+  {console.log(" city :" +City)}
       <div className="listContainer">
         <div className="listWrapper">
           <div className="listSearch">
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label htmlFor="">City :</label>
-              <input type="text" placeholder={destination} />
+              <input type="text" defaultValue={City} />
             </div>
             <div className="lsItem">
-              <label htmlFor="">Check-in Date</label>
-              <span onClick={()=>setOpenDate(!OpenDate)} className="">
+              <label htmlFor="">Property Type :</label>
+              <div>
+                      <select
+                        className="form-select form-select-lg"
+                        defaultValue={TypeProp}
+                        onChange={(e) => setCity(e.target.value)}
+                      >
+                        
+                        <option value="Villas" className="p-3">
+                          Villas
+                        </option>
+                        <option value="Appartement" className="p-3">
+                          Appartement
+                        </option>
+                        <option value="Luxury" className="p-3">
+                          Luxury Home Container
+                        </option>
+                        <option value="Lands" className="p-3">
+                          Lands
+                        </option>
+                      </select>
+                    </div>
+              {/* <span onClick={()=>setOpenDate(!OpenDate)} className="">
                             {`${format(date[0].startDate,"MM/dd/yyyy")} to ${format(date[0].endDate,"MM/dd/yyyy")}`}
-                </span>
-                {OpenDate && <DateRange   editableDateInputs={true}
+                </span> */}
+                {/* {OpenDate && <DateRange   editableDateInputs={true}
                         onChange={item=>setDate([item.selection])}
                         moveRangeOnFirstSelection={false}
                         ranges={date}
-                        minDate={new Date()}/>}
+                        minDate={new Date()}/>} */}
             </div>
             <div className="lsItem">
               <label htmlFor="">Options</label>
@@ -43,30 +66,15 @@ function Lists() {
 
               <div className="lsOptionItem">
                 <span className="lsOptionText">
-                  Min Price <small>per night</small>
+                  Min Price <small>property</small>
                 </span>
-                <input type="number" className="lsOptionInput" />
+                <input type="number" className="lsOptionInput" defaultValue={Minprice} />
               </div>
               <div className="lsOptionItem">
                 <span className="lsOptionText">
-                  max Price <small>per night</small>
+                  max Price <small>property</small>
                 </span>
-                <input type="number" className="lsOptionInput" />
-              </div><div className="lsOptionItem">
-                <span className="lsOptionText">
-                  Adulte
-                </span>
-                <input type="number" className="lsOptionInput" min={1} placeholder={Options.adulte} />
-              </div><div className="lsOptionItem">
-                <span className="lsOptionText">
-                  Children
-                </span>
-                <input type="number" className="lsOptionInput" min={0} placeholder={Options.children} />
-              </div><div className="lsOptionItem">
-                <span className="lsOptionText">
-                  Room
-                </span>
-                <input type="number" className="lsOptionInput"min={1} placeholder={Options.room}/>
+                <input type="number" className="lsOptionInput" defaultValue={Maxprice} placeholder={Maxprice}/>
               </div>
             </div>
             </div>

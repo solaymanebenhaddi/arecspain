@@ -20,9 +20,10 @@ import MultiRange from "../MultiRange/MultiRange";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "../MultiRange/multirange.css";
 const Header = ({ type }) => {
+
   const [City, setCity] = useState("");
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1);
+  const [maxPrice, setMaxPrice] = useState(0);
   const [ErrorPrice, setErrorPrice] = useState(false);
   // const [openDate, setOpenDate] = useState(false);
   const [TypeProp, setTypeProp] = useState("");
@@ -48,7 +49,7 @@ const Header = ({ type }) => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    console.log(" errorr"+ErrorPrice)
+    
     if(minPrice>=maxPrice){
       setErrorPrice(true);
     }
@@ -91,7 +92,7 @@ const Header = ({ type }) => {
         >
           {type !== "list" && (
             <>
-              {console.log("Header value is : " + type)}
+              
               <Row>
                 {/* Hero Descrip */}
                 <Col className="col-md-6">
@@ -122,6 +123,7 @@ const Header = ({ type }) => {
                       type="text"
                       placeholder="Alicante"
                       className="headerSearchInput"
+                      defaultValue={"Alicante"}
                       name="search"
                       id="searchD"
                       onChange={(e) => setCity(e.target.value)}
@@ -139,10 +141,10 @@ const Header = ({ type }) => {
                     <div>
                       <select
                         className="form-select form-select-lg"
-                        value={City}
-                        onChange={(e) => setCity(e.target.value)}
+                        value={TypeProp}
+                        onChange={(e) => setTypeProp(e.target.value)}
                       >
-                        <option defaultValue="--Select Property Type--">--Select Property Type--</option>
+                        <option >--Select Property Type--</option>
                         <option value="Villas" className="p-3">
                           Villas
                         </option>
@@ -194,7 +196,7 @@ const Header = ({ type }) => {
                             aria-label="min"
                             onChange={(event) =>
                               {
-                                setMinPrice(event.target.value);setErrorPrice(false)}
+                                setMinPrice(event.target.value);setErrorPrice(false);}
                             }
                             aria-describedby="inputGroup-sizing-sm"
                           />
@@ -218,7 +220,7 @@ const Header = ({ type }) => {
                             className="form-control"
                             aria-label="max"
                             onChange={(event) =>{
-                              setMaxPrice(event.target.value);setErrorPrice(false)}
+                              setMaxPrice(event.target.value);setErrorPrice(false);}
                             }
                             aria-describedby="inputGroup-sizing-sm"
                           />

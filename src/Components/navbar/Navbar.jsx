@@ -21,7 +21,7 @@ function Navigationbar() {
           </Offcanvas.Header>
           <Offcanvas.Body className='bg-Transparent'>
             <Nav className="justify-content-end flex-grow-1 pe-3 " >
-              <Nav.Link href="#action1" className='text-Primary fs-4'>Home</Nav.Link>
+              <Nav.Link href="/" className='text-Primary fs-4'>Home</Nav.Link>
               <Nav.Link href="#action2" className='text-Primary fs-4'>Services</Nav.Link>
               <Nav.Link href="#action2" className='text-Primary fs-4'>Contact</Nav.Link>
               <Nav.Link href="#deets"><Button className="navButton">Register</Button></Nav.Link>
