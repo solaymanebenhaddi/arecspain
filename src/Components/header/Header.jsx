@@ -16,7 +16,7 @@ import "react-date-range/dist/theme/default.css"; // theme date range css file
 // import { DateRangePicker } from "react-date-range";
 // import { DateRange } from "react-date-range";
 import { useNavigate } from "react-router-dom";
-import MultiRange from "../MultiRange/MultiRange";
+
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "../MultiRange/multirange.css";
 const Header = ({ type }) => {
@@ -56,10 +56,10 @@ const Header = ({ type }) => {
     else{navigate("/Lists", { state: { City, minPrice, maxPrice, TypeProp } });}
     
   };
-  const handlePrice = (min, max) => {
-    setMinPrice(min);
-    setMaxPrice(max);
-  };
+  // const handlePrice = (min, max) => {
+  //   setMinPrice(min);
+  //   setMaxPrice(max);
+  // };
 
   return (
     <div className="header">

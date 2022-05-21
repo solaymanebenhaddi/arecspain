@@ -1,6 +1,5 @@
-import { format } from "date-fns";
+
 import React ,{useState}from "react";
-import { DateRange } from "react-date-range";
 import { useLocation } from "react-router-dom";
 import Header from "../../Components/header/Header";
 import Navbar from "../../Components/navbar/Navbar";
@@ -13,8 +12,17 @@ function Lists() {
    const [Minprice,setMinPrice]=useState(location.state.minPrice)
    const [Maxprice,setMaxPrice]=useState(location.state.maxPrice)
    const [TypeProp,setTypeProp]=useState(location.state.TypeProp)
-   const [OpenDate,setOpenDate]=useState(false)
-   const [Show, setShow] = useState(location.state.Show);
+   const [ErrorPrice, setErrorPrice] = useState(false);
+   const handleSearch = () => {
+    
+    if(Minprice>=Maxprice){
+      setErrorPrice(true);
+    }
+    else{}
+    
+  };
+
+   
   return (
     <div>
       <Navbar />
@@ -26,7 +34,7 @@ function Lists() {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label htmlFor="">City :</label>
-              <input type="text" defaultValue={City} />
+              <input type="text" defaultValue={City} onChange={(e) => setCity(e.target.value)} />
             </div>
             <div className="lsItem">
               <label htmlFor="">Property Type :</label>
@@ -34,7 +42,7 @@ function Lists() {
                       <select
                         className="form-select form-select-lg"
                         defaultValue={TypeProp}
-                        onChange={(e) => setCity(e.target.value)}
+                        onChange={(e) => setTypeProp(e.target.value)}
                       >
                         
                         <option value="Villas" className="p-3">
@@ -68,17 +76,44 @@ function Lists() {
                 <span className="lsOptionText">
                   Min Price <small>property</small>
                 </span>
-                <input type="number" className="lsOptionInput" defaultValue={Minprice} />
+                <input 
+                type="text"
+                onKeyPress={(event) => {
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault();
+                  }
+                }} 
+                className="lsOptionInput" 
+                defaultValue={Minprice}
+                onChange={(event) =>
+                  {
+                    setMinPrice(event.target.value);setErrorPrice(false);}
+                } />
               </div>
               <div className="lsOptionItem">
                 <span className="lsOptionText">
                   max Price <small>property</small>
                 </span>
-                <input type="number" className="lsOptionInput" defaultValue={Maxprice} placeholder={Maxprice}/>
+                <input 
+                type="text"
+                onKeyPress={(event) => {
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault();
+                  }
+                }} 
+                className="lsOptionInput" 
+                defaultValue={Maxprice}
+                onChange={(event) =>
+                  {
+                    setMaxPrice(event.target.value);setErrorPrice(false);}
+                } />
               </div>
+              {ErrorPrice && <div className="alert alert-danger" role="alert">
+                                          You should Enter a Correct Range Min and Max Price!
+                                        </div>}
             </div>
             </div>
-            <button>Search</button>
+            <button onClick={handleSearch}>Search</button>
           </div>
           <div className="listResulte">
             <SearchItem/>
